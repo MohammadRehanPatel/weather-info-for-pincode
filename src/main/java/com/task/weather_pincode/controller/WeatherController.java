@@ -3,14 +3,11 @@ package com.task.weather_pincode.controller;
 
 import com.task.weather_pincode.dto.WeatherRequestDTO;
 import com.task.weather_pincode.dto.WeatherResponseDTO;
-import com.task.weather_pincode.model.WeatherRecord;
 import com.task.weather_pincode.service.WeatherService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,7 +36,7 @@ public class WeatherController {
             @RequestParam(defaultValue = "10") int size) {
 
 
-        Page<WeatherResponseDTO> response = weatherService.findAllWeatherRecord(page,size);
+        Page<WeatherResponseDTO> response = weatherService.findAllWeatherRecord(page, size);
         return ResponseEntity.ok(response);
     }
 }

@@ -20,13 +20,11 @@ public class WeatherApiServiceImpl implements  WeatherApiService{
     @Override
     public String getWeatherData(String latitude, String longitude) {
         try {
-            // OpenWeather API endpoint
             String url = String.format(
                     "%s?lat=%s&lon=%s&appid=%s&units=metric",
                     openWeatherApiUrl, latitude, longitude, openWeatherApiKey
             );
 
-            // Make GET request and get response
             Map<String, Object> response = restTemplate.getForObject(url, Map.class);
             if (response != null) {
                 return convertToReadableFormat(response);
@@ -38,7 +36,6 @@ public class WeatherApiServiceImpl implements  WeatherApiService{
         }
     }
 
-    // ✅ Convert OpenWeather response to readable format
     private String convertToReadableFormat(Map<String, Object> response) {
         Map<String, Object> main = (Map<String, Object>) response.get("main");
         Map<String, Object> wind = (Map<String, Object>) response.get("wind");

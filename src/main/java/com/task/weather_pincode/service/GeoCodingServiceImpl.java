@@ -1,7 +1,6 @@
 package com.task.weather_pincode.service;
 
 import com.task.weather_pincode.exception.ExternalApiException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -27,10 +26,8 @@ public class GeoCodingServiceImpl implements GeoCodingService {
     @Override
     public Map<String, String> getLatLongFromPincode(String pincode) {
         try {
-            // 1️⃣ Try Google Maps API
             return getLatLongFromGoogleMaps(pincode);
         } catch (Exception e) {
-            // 2️⃣ Fallback to OpenWeather Geocoding API
             return getLatLongFromOpenWeather(pincode);
         }
     }
@@ -58,7 +55,6 @@ public class GeoCodingServiceImpl implements GeoCodingService {
         throw new ExternalApiException("Failed to fetch coordinates from Google Maps");
     }
 
-    // ✅ OpenWeather Geocoding API
     private Map<String, String> getLatLongFromOpenWeather(String pincode) {
         String url = String.format(
                 "http://api.openweathermap.org/geo/1.0/zip?zip=%s,IN&appid=%s",

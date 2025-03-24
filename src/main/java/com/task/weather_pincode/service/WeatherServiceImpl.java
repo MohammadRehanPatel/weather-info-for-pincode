@@ -26,7 +26,6 @@ public class WeatherServiceImpl  implements WeatherService{
 
     @Override
     public WeatherResponseDTO getWeatherForPincode(String pincode, LocalDate forDate) {
-        // ✅ Step 1: Check cache for existing data
         Optional<WeatherRecord> existingRecord = repository.findByPincodeAndRecordDate(pincode, forDate);
         if (existingRecord.isPresent()) {
             return new WeatherResponseDTO(
@@ -36,19 +35,15 @@ public class WeatherServiceImpl  implements WeatherService{
             );
         }
 
-        // ✅ Step 2: Get lat/long from geocoding service
         Map<String, String> coordinates = geoCodingService.getLatLongFromPincode(pincode);
         String latitude = coordinates.get("lat");
         String longitude = coordinates.get("lng");
 
-        // ✅ Step 3: Get weather data from OpenWeather API
         String weatherData = weatherApiService.getWeatherData(latitude, longitude);
 
-        // ✅ Step 4: Save data in database
         WeatherRecord record = new WeatherRecord(pincode, latitude, longitude, weatherData, forDate);
         repository.save(record);
 
-        // ✅ Step 5: Return response
         return new WeatherResponseDTO(pincode, forDate.toString(), weatherData);
     }
 
