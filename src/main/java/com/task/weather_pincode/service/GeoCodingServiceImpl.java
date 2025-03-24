@@ -1,6 +1,7 @@
 package com.task.weather_pincode.service;
 
 import com.task.weather_pincode.exception.ExternalApiException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -17,7 +18,11 @@ public class GeoCodingServiceImpl implements GeoCodingService {
     @Value("${openweather.api.key}")
     private String openWeatherApiKey;
 
-    private final RestTemplate restTemplate = new RestTemplate();
+    private final RestTemplate restTemplate;
+
+    public GeoCodingServiceImpl(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
 
     @Override
     public Map<String, String> getLatLongFromPincode(String pincode) {

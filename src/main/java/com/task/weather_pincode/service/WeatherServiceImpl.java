@@ -16,13 +16,13 @@ import java.util.Optional;
 @Service
 public class WeatherServiceImpl  implements WeatherService{
     @Autowired
-    private WeatherRecordRepository repository;
+    WeatherRecordRepository repository;
 
     @Autowired
-    private GeoCodingService geoCodingService;
+    GeoCodingService geoCodingService;
 
     @Autowired
-    private WeatherApiService weatherApiService;
+    WeatherApiService weatherApiService;
 
     @Override
     public WeatherResponseDTO getWeatherForPincode(String pincode, LocalDate forDate) {

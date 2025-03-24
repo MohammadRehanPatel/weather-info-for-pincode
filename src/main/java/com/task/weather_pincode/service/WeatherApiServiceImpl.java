@@ -10,12 +10,12 @@ import java.util.Map;
 @Service
 public class WeatherApiServiceImpl implements  WeatherApiService{
     @Value("${openweather.api.key}")
-    private String openWeatherApiKey;
+    String openWeatherApiKey;
 
     @Value("${openweather.api.url}")
-    private String openWeatherApiUrl;
+    String openWeatherApiUrl;
 
-    private final RestTemplate restTemplate = new RestTemplate();
+    RestTemplate restTemplate = new RestTemplate();
 
     @Override
     public String getWeatherData(String latitude, String longitude) {
