@@ -27,37 +27,38 @@ This is a Spring Boot REST API to fetch and store weather information based on a
 
 ---
 
-## 📁 **Setup and Configuration**
+### 📁 **Setup and Configuration**
 
-### 1. **Clone the Repository**
+## 1. **Clone the Repository**
 ```bash
 git clone https://github.com/your-repo/weather-info-api.git
 cd weather-info-api
 ```
 
-### 2. Configure application.properties
-# 🌐 SERVER CONFIGURATION
+## 2. Configure application.properties
+
+## 🌐 SERVER CONFIGURATION
 server.port=8080
 
-# 🌍 DATABASE CONFIGURATION
+## 🌍 DATABASE CONFIGURATION
 spring.datasource.url=jdbc:mysql://localhost:3306/weather_db
 spring.datasource.username=root
 spring.datasource.password=your-password
 spring.jpa.hibernate.ddl-auto=update
 spring.jpa.show-sql=true
 
-# 🌐 GOOGLE MAPS API KEY (for geocoding)
+## 🌐 GOOGLE MAPS API KEY (for geocoding)
 google.maps.api.key=YOUR_GOOGLE_MAPS_API_KEY
 
-# ☀️ OPENWEATHER API KEY (for fallback geocoding)
+## ☀️ OPENWEATHER API KEY (for fallback geocoding)
 openweather.api.key=YOUR_OPENWEATHER_API_KEY
 
-# 🏢 JPA CONFIGURATION
+## 🏢 JPA CONFIGURATION
 spring.jpa.properties.hibernate.format_sql=true
 spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect
 spring.jpa.open-in-view=false
 
-# ✅ TEST CONFIGURATION
+## ✅ TEST CONFIGURATION
 spring.test.database.replace=none
 spring.jpa.defer-datasource-initialization=true
 
